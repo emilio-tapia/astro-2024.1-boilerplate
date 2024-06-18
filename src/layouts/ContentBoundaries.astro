@@ -1,0 +1,21 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+type Props = {
+  className?: string;
+  height?: "full" | "auto";
+};
+const { className = "", height = "auto" } = Astro.props;
+---
+
+<div
+  data-boundaries
+  class:list={clsxm([
+    "max-lg:container lg:max-w-screen-2xl xl:container mx-auto px-4",
+    { "h-screen h-[100dvh]": height === "full" },
+    { "h-auto": height === "auto" },
+    // "lg:!max-w-5xl"
+    className,
+  ])}
+>
+  <slot />
+</div>

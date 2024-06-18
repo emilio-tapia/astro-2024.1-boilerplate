@@ -1,0 +1,22 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+import Icon from "astro-icon";
+interface Props {
+  icon: {
+    path?: string;
+    className?: string;
+  };
+  content?: string;
+  linkTo?: string;
+  className?: string;
+}
+
+const { icon, linkTo, className } = Astro.props;
+---
+
+<div class:list={clsxm([className])}>
+  <a href={linkTo} class="contents cursor-pointer">
+    <Icon name={icon.path} class={icon.className} />
+  </a>
+</div>
+@/utils/styles/tw

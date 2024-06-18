@@ -1,0 +1,53 @@
+---
+import Icon from "astro-icon";
+// interface Props {
+//   message: string;
+// }
+
+// const { message = 'Welcome, world!' } = Astro.props;
+
+const iconPaths = {
+  darkMode: "moon",
+  lightMode: "sun",
+};
+---
+
+<!-- Store the message prop as a data attribute. -->
+<dark-switch class="flex">
+  <label class="contents cursor-pointer">
+    <input type="checkbox" class="sr-only" />
+    <Icon name={iconPaths.darkMode} class="fill-current text-matisse" />
+  </label>
+</dark-switch>
+
+<script>
+  class DarkModeSwitch extends HTMLElement {
+    constructor() {
+      super();
+
+      // Read the message from the data attribute.
+      // const message = this.dataset.message;
+      const checkbox = this.querySelector("input") as HTMLInputElement;
+      const svg = this.querySelector("svg") as SVGElement;
+      checkbox.addEventListener("change", () => {
+        console.log(checkbox.checked);
+        checkbox.checked
+          ? (svg.innerHTML = `
+          <path d="M12.0024 18.0084C8.6892 18.0084 5.994 15.3132 5.994 12C5.994 8.6868 8.6892 5.9916 12.0024 5.9916C15.3156 5.9916 18.0108 8.6868 18.0108 12C18.0108 15.3132 15.3156 18.0084 12.0024 18.0084Z"/>
+    <path d="M13.2 20.4H10.8V24H13.2V20.4Z"/>
+    <path d="M13.2 0H10.8V3.6H13.2V0Z"/>
+    <path d="M3.6 10.8H0V13.2H3.6V10.8Z"/>
+    <path d="M24 10.8H20.4V13.2H24V10.8Z"/>
+    <path d="M5.2092 17.0892L2.6652 19.6356L4.3632 21.3324L6.9072 18.786L5.2092 17.0892Z"/>
+    <path d="M19.6368 2.6664L17.0904 5.2128L18.7872 6.9096L21.3336 4.3632L19.6368 2.6664Z"/>
+    <path d="M2.6664 4.3644L5.2128 6.9108L6.9084 5.214L4.3644 2.6676L2.6664 4.3644Z"/>
+    <path d="M19.6368 21.3336L21.3336 19.6368L18.7872 17.0904L17.0904 18.7872L19.6368 21.3336Z"/>`)
+          : (svg.innerHTML = `
+          <path d="M9.14267 2.5C7.20792 3.14883 5.52584 4.389 4.33394 6.04539C3.14204 7.70178 2.50054 9.69071 2.5 11.7314C2.5 17.1285 6.87147 21.5 12.2686 21.5C16.5668 21.5 20.2057 18.7159 21.5 14.8573C20.5231 15.1748 19.473 15.3946 18.374 15.3946C12.9769 15.3946 8.6054 11.0231 8.6054 5.62596C8.6054 4.52699 8.80077 3.47686 9.14267 2.5V2.5Z"/>
+          `);
+      });
+    }
+  }
+
+  customElements.define("dark-switch", DarkModeSwitch);
+</script>

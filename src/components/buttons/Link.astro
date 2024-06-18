@@ -1,0 +1,47 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+import Icon from "astro-icon";
+interface Props {
+  id?: string;
+  icon?: {
+    enable: boolean;
+    path: string;
+    className: string;
+  };
+  content?: string;
+  linkTo?: string;
+  className?: string;
+  underline?: boolean;
+  activeScale?: boolean;
+  activeStroke?: boolean;
+}
+
+const {
+  id,
+  icon,
+  content = "",
+  linkTo,
+  className,
+  underline = true,
+  activeScale = false,
+  activeStroke = false,
+} = Astro.props;
+---
+
+<div
+  class:list={clsxm([
+    {
+      "custom-underline-after-setup max-lg:custom-underline-after-active lg:custom-underline-after-hover":
+        underline,
+      "custom-active-scale": activeScale,
+      "custom-active-stroke": activeStroke,
+    },
+    "transition duration-100 cursor-pointer",
+    className,
+  ])}
+>
+  <a href={linkTo} id={id} class="contents" role="link" aria-label={content}>
+    {icon?.enable ? <Icon name={icon?.path} class={icon?.className} /> : null}
+    {content.length > 0 ? <span>{content}</span> : null}
+  </a>
+</div>

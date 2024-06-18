@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply text-matisse;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: balance;
+  }
+
+  p {
+    @apply text-soft_gray-700;
+    -webkit-font-smoothing: antialiased;
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  body {
+    @apply bg-matisse-25;
+    min-height: 100dvh;
+  }
+}

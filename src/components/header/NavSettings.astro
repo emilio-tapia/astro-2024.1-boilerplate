@@ -1,0 +1,29 @@
+---
+import Dropdown from "@/components/dropdown/Dropdown.astro";
+import DarkModeSwitch from "@/components/header/DarkModeSwitch.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<div class="max-lg:flex flex-col">
+  <div
+    class="lg:sr-only mb-4 font-bold uppercase tracking-widest custom-normal-black-blue text-right"
+    role="heading"
+    aria-level="2"
+  >
+    {t("header").titleSettings}
+  </div>
+  <div
+    class="flex flex-col lg:grid grid-cols-[repeat(2,minmax(0,auto))] items-end lg:items-center gap-2 border-0 lg:py-1 focus:outline-none rounded-md text-base lg:mt-0 w-full basis-full lg:basis-[content]"
+    role="group"
+  >
+    <Dropdown />
+    <DarkModeSwitch />
+    <!-- <div class="hidden lg:inline lg:h-full">
+      <ButtonSystem type="solid_white_blue" size="sm" fullHeight={true}>
+        Cotizar
+      </ButtonSystem>
+    </div> -->
+  </div>
+</div>

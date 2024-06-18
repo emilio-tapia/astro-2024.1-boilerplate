@@ -1,0 +1,30 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+import VideoPlyr from "../video/VideoPlyr.astro";
+interface Props {
+  videoPath: string;
+  side: "left" | "right";
+  styles?: string;
+}
+
+const { videoPath, side = "right", styles } = Astro.props;
+---
+
+<div
+  class:list={clsxm([
+    "w-[max(50dvw, 300px)] sm:w-[40dvw] md:w-[40dvw] h-[100dvh]",
+    { "left-0 hidden sm:block mask-radial-left": side === "left" },
+    { "right-0 block mask-radial-right": side === "right" },
+    "absolute opacity-90 top-0 z-10",
+    styles,
+  ])}
+>
+  <div
+    class=`aspect-[9/16] mask-sm-bottom h-full w-full md:mask-md-bottom after:bg-matisse/50 after:absolute after:inset-0 dark:after:mix-blend-hue after:mix-blend-plus-lighter after:opacity-70`
+  >
+    <VideoPlyr path={videoPath} />
+    <VideoPlyr path={videoPath === "video1" ? "video2" : "video1"} />
+    <VideoPlyr path={videoPath} />
+  </div>
+</div>
+@/utils/styles/tw

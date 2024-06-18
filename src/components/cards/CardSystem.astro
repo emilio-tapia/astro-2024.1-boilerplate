@@ -1,0 +1,60 @@
+---
+type Props = {
+  type: "solid" | "outline" | "ghost" | "soft" | "white" | "link";
+  text?: string;
+  withIcon?: boolean;
+};
+
+const { type, text, withIcon } = Astro.props;
+---
+
+{
+  type === "solid" && (
+    <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-matisse-600 text-white hover:bg-matisse-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+{
+  type === "outline" && (
+    <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-matisse-600 hover:text-matisse-600 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-gray-400 dark:hover:text-matisse-500 dark:hover:border-matisse-600 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+{
+  type === "ghost" && (
+    <div class="px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-matisse-600 hover:bg-matisse-100 hover:text-matisse-800 disabled:opacity-50 disabled:pointer-events-none dark:text-matisse-500 dark:hover:bg-matisse-800/30 dark:hover:text-matisse-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+{
+  type === "soft" && (
+    <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-matisse-100 text-matisse-800 hover:bg-matisse-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-matisse-900 dark:text-matisse-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+{
+  type === "white" && (
+    <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+{
+  type === "link" && (
+    <div class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-matisse-600 hover:text-matisse-800 disabled:opacity-50 disabled:pointer-events-none dark:text-matisse-500 dark:hover:text-matisse-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+      {text}
+      <slot />
+    </div>
+  )
+}
+
+<script></script>

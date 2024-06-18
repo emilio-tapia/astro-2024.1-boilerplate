@@ -1,0 +1,23 @@
+---
+type Props = {
+  title: string;
+  info: string;
+};
+
+const { info, title } = Astro.props;
+---
+
+<div class="">
+  <h2
+    class="title-font font-semibold custom-small-black-blue tracking-widest text-xs"
+  >
+    {title.toUpperCase()}
+  </h2>
+  <a href="#" target="_blank" rel="noopener noreferrer">
+    <p
+      class="mt-1 text-sm custom-underline-after duration-300 inline custom-small-gray"
+    >
+      {info}
+    </p>
+  </a>
+</div>

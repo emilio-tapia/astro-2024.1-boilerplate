@@ -1,0 +1,29 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+
+type Props = {
+  style?: string;
+  color?: "bw";
+  size?: "sm" | "md" | "lg";
+};
+
+const { style = "", color = "bw", size = "md" } = Astro.props;
+---
+
+<h2
+  class=""
+  class:list={clsxm([
+    "font-semibold",
+    {
+      "custom-normal-black-white": color === "bw",
+      "sm:text-2xl text-xl": size === "sm",
+      "sm:text-3xl text-2xl": size === "md",
+      "sm:text-4xl text-3xl": size === "lg",
+    },
+    style,
+  ])}
+>
+  <slot />
+</h2>
+
+<script></script>

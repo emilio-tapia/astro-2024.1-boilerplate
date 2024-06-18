@@ -1,0 +1,22 @@
+---
+import Link from "../buttons/Link.astro";
+
+interface Props {
+  titleButton: string;
+}
+
+const { titleButton } = Astro.props;
+---
+
+<div
+  class="bg-matisse-100 flex gap-1 items-center justify-start py-3 rounded-lg hover:bg-matisse-200 cursor-pointer px-4"
+>
+  <Link
+    id={titleButton}
+    icon={{ path: "user", enable: true, styles: "w-full" }}
+    styles="w-10"
+  />
+  <span class="pe-2 text-xl overflow-ellipsis whitespace-nowrap"
+    >{titleButton}</span
+  >
+</div>

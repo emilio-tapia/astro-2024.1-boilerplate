@@ -1,0 +1,21 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+
+type Props = { size?: "sm" | "md" | "lg"; className?: string };
+
+const { size = "md", className } = Astro.props;
+---
+
+<p
+  class="dark:text-zinc-400"
+  class:list={clsxm([
+    {
+      "text-md": size === "md",
+      "text-lg": size === "lg",
+      "text-base": size === "sm",
+    },
+    className,
+  ])}
+>
+  <slot />
+</p>

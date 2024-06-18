@@ -1,0 +1,18 @@
+---
+type Props = {};
+
+const {} = Astro.props;
+---
+
+<div class="relative">
+  <div
+    class="absolute top-0 w-full text-matisse-25 dark:text-zinc-800 title-stroke opacity-100 visible dark:invisible dark:opacity-0"
+  >
+    <slot name="title" />
+  </div>
+  <h1
+    class="text-gradient gradient-light dark:gradient-dark before:bg-[rgb(15_64_122/70%)] dark:before:bg-[hsla(49,92%,53%,.2)] before:blur_blob_setup z-10 relative opacity-90 pb-4"
+  >
+    <slot name="title" />
+  </h1>
+</div>

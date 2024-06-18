@@ -1,0 +1,91 @@
+---
+import Logo from "@/components/assets/Logo.astro";
+import FooterColumn from "@/components/footer/FooterColumn.astro";
+import FooterInfo from "@/components/footer/FooterInfo.astro";
+import info from "@/data/info.json";
+import Icon from "astro-icon";
+import ContentBoundaries from "@/layouts/ContentBoundaries.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<footer class="[grid-area:footer] pb-6 pt-16 px-8 bg-white dark:bg-transparent">
+  <ContentBoundaries>
+    <div class="pb-6 mx-auto border-b-[#c2c2c2] border-b">
+      <div
+        class="grid grid-cols-2 gap-12 md:grid-cols-4 lg:grid-cols-6 lg:gap-8"
+      >
+        <div class="col-span-full lg:col-span-2">
+          <!-- logo - start -->
+          <div class="mb-4 lg:-mt-2 w-60">
+            <Logo width={"full"} />
+          </div>
+          <!-- logo - end -->
+
+          <div class="relative flex flex-col flex-wrap space-y-4">
+            <FooterInfo title={t("general").address} info={info.address.raw} />
+            <FooterInfo title={t("general").email} info={info.email.contact} />
+            <FooterInfo title={t("general").phone} info={info.phone.support} />
+          </div>
+        </div>
+
+        <!-- nav - start -->
+        <FooterColumn
+          title={t("footer").productsColumn.title}
+          links={t("footer").productsColumn.links}
+        />
+        <!-- nav - end -->
+
+        <!-- nav - start -->
+        <FooterColumn
+          title={t("footer").companyColumn.title}
+          links={t("footer").companyColumn.links}
+        />
+        <!-- nav - end -->
+
+        <!-- nav - start -->
+        <FooterColumn
+          title={t("footer").supportColumn.title}
+          links={t("footer").supportColumn.links}
+        />
+        <!-- nav - end -->
+
+        <!-- nav - start -->
+        <FooterColumn
+          title={t("footer").legalColumn.title}
+          links={t("footer").legalColumn.links}
+        />
+        <!-- nav - end -->
+      </div>
+    </div>
+
+    <div
+      class="text-gray-400 hover:text-gray-500/80 dark:text-gray-400/70 dark:hover:text-gray-400 mx-auto transition-colors"
+    >
+      <div class="flex items-center justify-between gap-4 pt-6">
+        <!-- social - start -->
+        <div class="flex flex-1 gap-4 transition-colors">
+          {
+            info.social.map(({ link, icon, displayName, display }) => {
+              return (
+                display && (
+                  <a
+                    href={link}
+                    target="_blank"
+                    class="hover:scale-110 custom-icon-gray "
+                  >
+                    <Icon name={icon} class="h-5 w-5" />
+                  </a>
+                )
+              );
+            })
+          }
+        </div>
+        <!-- social - end -->
+
+        <span class="text-sm"> © 2024</span>
+      </div>
+    </div>
+  </ContentBoundaries>
+</footer>

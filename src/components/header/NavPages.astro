@@ -1,0 +1,62 @@
+---
+import Link from "@/components/buttons/Link.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { clsxm } from "@/utils/styles/tw";
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<div class="flex lg:mr-auto lg:block lg:ml-4 lg:mt-1 max-lg:flex-col">
+  <div
+    class="lg:sr-only mb-4 font-bold uppercase tracking-widest custom-normal-black-blue"
+    role="heading"
+    aria-level="2"
+  >
+    {t("header").titlePages}
+  </div>
+  <nav
+    class:list={clsxm([
+      "lg:flex-row lg:py-1 lg:pl-4 lg:border-l lg:border-gray_matisse lg:flex-wrap lg:items-center lg:ms-auto lg:text-xs",
+      " max-lg:gap-2 max-lg:flex-1 max-lg:text-matisse-25",
+      "max-lg:[&>*]:custom-normal-gray",
+      "lg:[&>*]:mr-5 lg:[&>*]:uppercase lg:[&>*]:font-medium lg:[&>*]:tracking-widest",
+    ])}
+    class="flex items-start flex-col text-base justify-center"
+    role="navigation"
+    aria-label="Pages Navigation"
+  >
+    <Link content={t("general").pages.services} linkTo="servicios" />
+    <Link content={t("general").pages.products} linkTo="productos" />
+    <Link content={t("general").pages.contact} linkTo="contacto" />
+  </nav>
+</div>
+
+<style>
+  .linkHover::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+
+  .linkHover:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .linkHover::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0 0 0 0;
+    background: hsl(200 0% 0% / 2%);
+    z-index: -1;
+    transition: transform 0.3s ease 0.3s;
+  }
+
+  .linkHover {
+    position: relative;
+  }
+</style>

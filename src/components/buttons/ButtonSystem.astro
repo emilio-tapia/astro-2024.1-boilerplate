@@ -1,0 +1,292 @@
+---
+import Icon from "astro-icon";
+type Props = {
+  type:
+    | "solid_blue"
+    | "outline_white"
+    | "solid_white_blue"
+    | "outline"
+    | "ghost"
+    | "soft"
+    | "white"
+    | "link";
+  iconName?: string;
+  iconDir?: "before" | "after";
+  fullWidth?: boolean;
+  fullHeight?: boolean;
+  hoverShadow?: boolean;
+  size?: "sm" | "md" | "lg";
+  linkPadding?: boolean;
+  withFocus?: boolean;
+};
+
+const {
+  type,
+  iconName,
+  fullWidth = false,
+  fullHeight = false,
+  size = "md",
+  hoverShadow = true,
+  iconDir = "after",
+  linkPadding = true,
+  withFocus = false,
+} = Astro.props;
+
+const commonClasses =
+  "inline-flex justify-center items-center gap-x-2 font-bold disabled:opacity-50 disabled:pointer-events-none focus:outline-none  transition duration-100 group";
+
+const choseSize =
+  size === "sm"
+    ? "text-sm py-2 px-4 rounded-lg"
+    : size === "md"
+      ? "text-sm py-3 px-4 rounded-xl"
+      : size === "lg"
+        ? "text-base py-4 px-6 md:px-8 rounded-xl"
+        : "";
+
+const choseSizeIcon =
+  size === "sm"
+    ? "w-4 h-4"
+    : size === "md"
+      ? "w-4 h-4"
+      : size === "lg"
+        ? "w-6 h-6"
+        : "";
+
+const iconClass = `flex-shrink-0 ${choseSizeIcon} transition-transform duration-300`;
+const iconClassBefore = "group-hover:stroke-white";
+const iconClassAfter = "group-hover:translate-x-[2px] [will-change:transform]";
+---
+
+{
+  // PRIMARY
+  type === "solid_blue" && (
+    <button
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+          "custom-shadow-after": hoverShadow,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      type="button"
+      class="bg-matisse-500 dark:bg-dm_blue-500 active:bg-matisse-600 text-white"
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+
+      <div
+        class:list={[
+          {
+            "group-hover:-translate-x-[2px] [will-change:transform] transition-transform duration-300":
+              iconDir && iconName,
+          },
+        ]}
+      >
+        <slot />
+      </div>
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  // SECONDARY
+  type === "outline_white" && (
+    <button
+      class:list={[
+        "border border-matisse-100/90",
+        "dark:border-matisse_sky-100/10 dark:border-transparent",
+        "bg-transparent hover:bg-matisse-100/40 active:bg-matisse-100/70 active:hover:bg-matisse-100/70",
+        "dark:bg-matisse_retro_blue-200/15 dark:hover:bg-matisse_retro_blue-200/25 dark:active:hover:bg-matisse_retro_blue-200/20 dark:active:bg-matisse_retro_blue-200/10",
+        "text-matisse-600",
+        "dark:text-white",
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+          // "custom-shadow-after": hoverShadow,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      type="button"
+      class=""
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <div
+        class:list={[
+          {
+            "group-hover:-translate-x-[2px] [will-change:transform] transition-transform duration-300":
+              iconDir && iconName,
+          },
+        ]}
+      >
+        <slot />
+      </div>
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  // SECONDARY WHEN NO BLUE NEAR
+  type === "solid_white_blue" && (
+    <button
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      type="button"
+      class="bg-matisse-100 text-matisse-600 hover:bg-matisse-600 hover:text-white"
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  type === "outline" && (
+    <button
+      type="button"
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      class="border border-matisse-600 text-matisse-600"
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  type === "ghost" && (
+    <button
+      type="button"
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      class="border-transparent text-matisse-600 hover:bg-matisse-100 hover:text-matisse-800 dark:text-matisse-500 dark:hover:bg-matisse-800/30 dark:hover:text-matisse-400 "
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  type === "soft" && (
+    <button
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      class="border-transparent bg-matisse-100 text-matisse-800 hover:bg-matisse-200 dark:hover:bg-matisse-900 dark:text-matisse-400 "
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+{
+  type === "white" && (
+    <button
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      class="font-medium border-gray-300 bg-matisse-50 text-gray-800 shadow-sm hover:bg-gray-50  dark:hover:bg-matisse-900 dark:border-gray-700 dark:text-white dark:bg-gray-800  "
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+
+{
+  type === "link" && (
+    <button
+      class:list={[
+        {
+          "w-full": fullWidth,
+          "h-full": fullHeight,
+          "focus:ring-1 focus:ring-current": withFocus,
+          "-translate-x-[19.8%] hover:translate-x-[0] active:translate-x-[0] focus:translate-x-[0]group ":
+            !linkPadding,
+        },
+        commonClasses,
+        choseSize,
+      ]}
+      class="border-transparent text-matisse-600 hover:text-matisse-800  dark:text-matisse-500 dark:hover:text-matisse-400 "
+    >
+      {iconDir === "before" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassBefore]} />
+      )}
+      <slot />
+      {iconDir === "after" && iconName && (
+        <Icon name={iconName} class:list={[iconClass, iconClassAfter]} />
+      )}
+    </button>
+  )
+}
+
+<script></script>

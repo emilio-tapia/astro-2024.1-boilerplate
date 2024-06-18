@@ -1,0 +1,95 @@
+---
+type Props = {};
+
+const {} = Astro.props;
+---
+
+<div class="cont">
+  <button class="btn"
+    ><span>Submit</span><img
+      src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png"
+      height="62"
+      width="62"
+    /></button
+  >
+</div>
+
+<style>
+  @keyframes extend {
+    0% {
+      border-radius: 100px;
+    }
+    10% {
+      background: #fff;
+    }
+    20% {
+      background: #6fb07f;
+    }
+    100% {
+      border-radius: 100px;
+      background: #6fb07f;
+    }
+  }
+  @keyframes disappear {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      color: #fff;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    70% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  button {
+    width: 8rem;
+    height: 4rem;
+    border-radius: 100px;
+    background: #fff;
+    position: relative;
+  }
+
+  button > span {
+    color: #6fb07f;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+
+  button:focus {
+    /*animation*/
+    animation: extend 1s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  button:focus > span {
+    animation: disappear 1s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  button:focus > img {
+    animation: appear 1s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+</style>

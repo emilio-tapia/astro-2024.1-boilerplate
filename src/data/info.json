@@ -1,0 +1,44 @@
+{
+    "social": [
+        {
+            "display": true,
+            "name": "whatsapp",
+            "link": "https://wa.link/y6eoh1",
+            "icon": "social/whatsapp",
+            "displayName": "Whatsapp"
+        },
+        {
+            "display": true,
+            "name": "instagram",
+            "link": "https://www.instagram.com/comtelec_cia_ltda/",
+            "icon": "social/instagram",
+            "displayName": "Instagram"
+        },
+        {
+            "display": true,
+            "name": "linkedin",
+            "link": "https://ec.linkedin.com/company/comtelec-cia-ltda",
+            "icon": "social/linkedin",
+            "displayName": "Linked In"
+        },
+        {
+            "display": false,
+            "name": "facebook",
+            "link": "https://www.facebook.com/comtelec",
+            "icon": "social/facebook",
+            "displayName": "Facebook"
+        }
+    ],
+    "address": {
+        "raw": "Gonzalo Salazar N48-03 & Av. La Prensa",
+        "googlemaps": ""
+    },
+    "phone": {
+        "support": "(+593) 2469-281"
+    },
+    "email": {
+        "contact": "comtelec@comtelec.com",
+        "finance": "contabilidad@comtelec.com",
+        "hr": "recursoshumanos@comtelec.com"
+    }
+}

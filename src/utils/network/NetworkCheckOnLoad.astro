@@ -1,0 +1,11 @@
+<script>
+  import { CustomDownlinkManager } from "@/utils/network/DownlinkManager";
+  import { NavigatorAPIManager } from "@/utils/network/NavigatorManager";
+  import { LocalStorageManager } from "@/utils/local/LocalStorageManager";
+  if (!NavigatorAPIManager.getConnectionProps()) {
+    if (!LocalStorageManager.getFromLocal({ prop: "downlink" }))
+      CustomDownlinkManager.getInstance();
+  } else {
+    NavigatorAPIManager.saveToLocal();
+  }
+</script>

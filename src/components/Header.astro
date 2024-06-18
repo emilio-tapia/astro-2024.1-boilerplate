@@ -1,0 +1,51 @@
+---
+import ContentBoundaries from "@/layouts/ContentBoundaries.astro";
+import Logo from "@/components/assets/Logo.astro";
+import NavHeader from "@/components/header/NavHeader.astro";
+import { clsxm } from "@/utils/styles/tw";
+---
+
+<header
+  id="main_header"
+  class:list={clsxm([
+    "bg-matisse-25/90 dark:bg-zinc-950/95",
+    " supports-[backdrop-filter]:bg-matisse-25/50 supports-[backdrop-filter]:dark:bg-zinc-950/50 supports-[backdrop-filter]:backdrop-blur-md ",
+  ])}
+  class="text-gray-600 dark:text-gray-400 body-font [grid-area:header] transition-all"
+  aria-label="Main Header"
+  transition:name="header"
+>
+  <div class="relative">
+    <ContentBoundaries className="h-[5rem] grid">
+      <div
+        class:list={clsxm(["flex", "supports-[display:grid]:grid", "lg:flex"])}
+        class="flex-nowrap flex-row items-center"
+        id="menu_grid"
+      >
+        <div
+          class="w-36 dark:[filter:drop-shadow(2px_4px_6px_#3a86b440) max-lg:[grid-area:logo]"
+          aria-label="Comtelec Logo"
+        >
+          <Logo />
+        </div>
+        <NavHeader />
+      </div>
+    </ContentBoundaries>
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 50;
+  }
+
+  #menu_grid {
+    grid-template-areas: "logo menu-btn";
+    grid-template-columns: 1fr auto;
+  }
+</style>

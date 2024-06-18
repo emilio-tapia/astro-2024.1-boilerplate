@@ -1,0 +1,60 @@
+---
+import Icon from "astro-icon";
+import BorderRounded from "../border/BorderRounded.astro";
+// interface Props {
+//   message: string;
+// }
+
+// const { message = 'Welcome, world!' } = Astro.props;
+
+const iconPaths = {
+  darkMode: "moon",
+  lightMode: "sun",
+};
+---
+
+<!-- Store the message prop as a data attribute. -->
+<dark-switch class="flex" aria-label="Dark Mode Switch" transition:persist>
+  <BorderRounded
+    style="rounded-full p-1 bg-white/40 dark:bg-transparent"
+    paddingUnit={1}
+  >
+    <div
+      class="flex text-xs font-semibold leading-5 [&>*]:w-auto [&>*]:rounded-full [&>*]:px-3 [&>*]:py-1 [&>*]:duration-300 [&>*]:focus:outline-none"
+    >
+      <button
+        data-theme-switch="light"
+        class="bg-matisse dark:!bg-transparent text-slate-200 dark:text-slate-200"
+      >
+        <Icon name={iconPaths.lightMode} class="fill-current w-5" />
+      </button>
+      <button
+        data-theme-switch="dark"
+        class="dark:bg-matisse-50 dark:sm:bg-matisse bg-transparent dark:text-zinc-800 dark:sm:text-slate-200 text-matisse"
+      >
+        <Icon name={iconPaths.darkMode} class="fill-current w-5" />
+      </button>
+    </div>
+  </BorderRounded>
+</dark-switch>
+
+<script>
+  import { DarkModeManager } from "@/utils/theme/DarkModeManager";
+
+  class DarkModeSwitch extends HTMLElement {
+    constructor() {
+      super();
+      const buttons = this.querySelectorAll("button");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const element = e.currentTarget as HTMLElement;
+          const selectedTheme = element.dataset.themeSwitch;
+          if (selectedTheme === "dark") DarkModeManager.setDark();
+          if (selectedTheme === "light") DarkModeManager.setLight();
+        });
+      });
+    }
+  }
+
+  customElements.define("dark-switch", DarkModeSwitch);
+</script>

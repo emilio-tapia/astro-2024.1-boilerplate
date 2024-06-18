@@ -1,0 +1,34 @@
+---
+import type { ImageModel } from "@/utils/types";
+type Props = {
+  category: string;
+  name: string;
+  price: number;
+  img: ImageModel;
+};
+
+const { category, img, name, price } = Astro.props;
+---
+
+<a
+  class="lg:w-1/4 md:w-1/2 py-4 ps-4 w-full border-b-[1px] border-r-[1px] cursor-pointer hover:shadow-xl duration-200"
+>
+  <div
+    class="block relative h-48 rounded border-matisse-300 hover:scale-105 duration-300"
+  >
+    <img
+      alt={img.alt}
+      class="object-contain object-center w-full h-full block"
+      src=`/products/${img.main}.png`
+    />
+  </div>
+  <div class="mt-4">
+    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+      {category}
+    </h3>
+    <h2 class="text-gray-900 title-font text-lg font-medium">
+      {name}
+    </h2>
+    {price === 0 ? "" : <p class="mt-1">${price}</p>}
+  </div>
+</a>

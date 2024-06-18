@@ -1,0 +1,31 @@
+---
+type Props = {
+  title: string;
+  links: string[];
+};
+
+const { title, links } = Astro.props;
+---
+
+<div>
+  <div
+    class="mb-4 font-bold uppercase tracking-widest custom-normal-black-blue"
+  >
+    {title}
+  </div>
+
+  <nav class="flex flex-col gap-2">
+    {
+      links.map((link) => (
+        <div>
+          <a
+            href="#"
+            class="custom-normal-gray custom-underline-after transition duration-100 "
+          >
+            {link}
+          </a>
+        </div>
+      ))
+    }
+  </nav>
+</div>

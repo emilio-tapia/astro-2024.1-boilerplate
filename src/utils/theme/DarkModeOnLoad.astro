@@ -1,0 +1,47 @@
+<script defer>
+  class DarkModeManager {
+    static setup() {
+      // page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (!("theme" in localStorage)) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          DarkModeManager.setDark();
+        } else {
+          DarkModeManager.setLight();
+        }
+
+        return;
+      } else {
+        if (JSON.parse(localStorage.theme) === "dark") {
+          DarkModeManager.setDark();
+        } else {
+          DarkModeManager.setLight();
+        }
+
+        return;
+      }
+    }
+
+    static setDark() {
+      document.documentElement.classList.add("dark");
+      DarkModeManager.saveToLocal({ isDark: true });
+    }
+
+    static setLight() {
+      DarkModeManager.saveToLocal({ isDark: false });
+    }
+
+    static saveToLocal({ isDark = true }) {
+      isDark
+        ? (localStorage["theme"] = JSON.stringify("dark"))
+        : (localStorage["theme"] = JSON.stringify("light"));
+    }
+  }
+
+  // CALL
+  DarkModeManager.setup();
+
+  // PAGE TRANSITION EVENT
+  document.addEventListener("astro:after-swap", (ev) => {
+    DarkModeManager.setup();
+  });
+</script>

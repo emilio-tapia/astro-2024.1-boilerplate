@@ -1,0 +1,149 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+import NavPages from "./NavPages.astro";
+import NavSettings from "./NavSettings.astro";
+import BorderRounded from "../border/BorderRounded.astro";
+const MENUOPEN_INIT = false;
+type Props = {};
+
+const {} = Astro.props;
+---
+
+<div id="nav-header-wrapper" class="contents">
+  <button
+    id="menu"
+    class="block lg:hidden ml-auto p-3 bg-matisse-600 dark:bg-zinc-800 w-10 h-10 rounded-md z-20
+  max-lg:[grid-area:menu-btn] group/btnMenu duration-700"
+    aria-pressed="false"
+    aria-controls="navMenu"
+  >
+    <div
+      class:list={clsxm([
+        // {
+        //   "rotate-45 translate-y-0.5": menuOpen,
+        // },
+        "group-aria-pressed/btnMenu:rotate-45 group-aria-pressed/btnMenu:translate-y-0.5",
+      ])}
+      class="bg-white h-0.5 rounded-md w-full transition-transform"
+    >
+    </div>
+    <div
+      class:list={clsxm([
+        // {
+        //   hidden: menuOpen,
+        // },
+        "group-aria-pressed/btnMenu:hidden",
+      ])}
+      class="bg-white h-0.5 rounded-md w-full my-1"
+    >
+    </div>
+    <div
+      class:list={clsxm([
+        // {
+        //   "-rotate-45": menuOpen,
+        // },
+        "group-aria-pressed/btnMenu:-rotate-45",
+      ])}
+      class="bg-white h-0.5 rounded-md w-full transition-transform"
+    >
+    </div></button
+  >
+
+  <nav-header
+    data-menu-active={MENUOPEN_INIT.toString()}
+    class="@container/headernav w-full h-0 lg:h-auto absolute lg:relative max-lg:top-full left-0 group/navHeader"
+    aria-label="Main Navigation"
+    aria-expanded="false"
+  >
+    <div
+      class:list={clsxm([
+        "max-lg:-translate-y-40 max-lg:container max-lg:opacity-0 max-lg:px-4 max-lg:py-4 max-lg:min-h-[10rem]",
+        "w-full",
+        "lg:w-auto lg:max-w-[initial]",
+        "group-aria-expanded/navHeader:opacity-100 group-aria-expanded/navHeader:-translate-y-0 will-change-transform",
+      ])}
+      class="z-10 duration-500 flex mx-auto"
+    >
+      <BorderRounded
+        paddingUnit={6}
+        bgBlue={true}
+        className="max-lg:custom-shadow-menu max-lg:dark:shadow-none lg:border-none lg:p-0 lg:bg-transparent lg:hover:!bg-transparent"
+      >
+        <div class="relative w-full max-lg:ms-auto">
+          <div
+            class="flex flex-row items-start lg:items-center max-lg:justify-between h-full"
+          >
+            <NavPages />
+            <NavSettings />
+          </div>
+        </div>
+      </BorderRounded>
+    </div>
+  </nav-header>
+</div>
+
+<!-- TODO WHEN FOCUS OUTSIDE NAV HEADER MOBILE, IT CLOSES THE MENU -->
+<!-- <style>
+  #nav-header-wrapper:focus-within nav-header {
+    opacity: 1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+  }
+</style> -->
+
+<script>
+  import { gsap } from "gsap";
+  import { mq1024 } from "@/utils/client/accessibilty";
+
+  class NavHeader extends HTMLElement {
+    constructor() {
+      super();
+      const button = document.querySelector("#menu") as HTMLButtonElement;
+      const header = document.querySelector(
+        "#main_header",
+      ) as HTMLButtonElement;
+      button.addEventListener("click", () => {
+        const isExpanded = this.getAttribute("aria-expanded");
+
+        if (isExpanded === "false") {
+          document.body.classList.add("overflow-hidden");
+          document.getElementById("menu_overlay")!.style.visibility = "visible";
+          header.classList.add("custom-border-radius-bottom");
+          this.setAttribute("aria-expanded", "true");
+          button.setAttribute("aria-pressed", "true");
+          gsap.to("#menu_overlay", {
+            duration: 0.5,
+            opacity: 1,
+          });
+        }
+        if (isExpanded === "true") {
+          this.setAttribute("aria-expanded", "false");
+          button.setAttribute("aria-pressed", "false");
+
+          gsap.to("#menu_overlay", {
+            duration: 0.5,
+            opacity: 0,
+            onComplete: () => {
+              header.classList.remove("custom-border-radius-bottom");
+              document.getElementById("menu_overlay")!.style.visibility =
+                "hidden";
+              document.body.classList.remove("overflow-hidden");
+            },
+          });
+        }
+      });
+
+      mq1024().addEventListener("change", (e) => {
+        if (!e.matches) {
+          this.setAttribute("aria-expanded", "false");
+          button.setAttribute("aria-pressed", "false");
+          header.classList.remove("custom-border-radius-bottom");
+          document.body.classList.remove("overflow-hidden");
+          document.getElementById("menu_overlay")!.style.visibility = "hidden";
+        }
+      });
+    }
+  }
+
+  customElements.define("nav-header", NavHeader);
+</script>

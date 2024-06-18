@@ -1,0 +1,16 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Icon from "astro-icon";
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<div
+  class="flex title-font font-medium items-center text-gray-900 cursor-pointer custom-hover-active-scale"
+  transition:persist
+>
+  <a href="/" class="contents">
+    <span class="sr-only">{t("general").pages.home}</span>
+    <Icon name="comtelec" class="text-black w-full" />
+  </a>
+</div>

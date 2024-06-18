@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  } */
+
+  .mask-radial-left {
+    /* mask: radial-gradient(circle at -20% 35%, #000 0%, transparent 65%); */
+    mask: linear-gradient(260deg, transparent 5%, 65%, #000);
+  }
+
+  .mask-radial-right {
+    /* mask: radial-gradient(circle at 120% 35%, #000 0, transparent 65%); */
+    mask: linear-gradient(100deg, transparent 5%, 75%, #000);
+
+    right: 0;
+  }
+
+  .mask-sm-bottom {
+    mask: linear-gradient(20deg, transparent 20%, #fff 70%);
+  }
+
+  .mask-md-bottom {
+    mask: linear-gradient(-10deg, transparent 10%, #fff 80%);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text bg-gradient-to-br from-matisse-400 to-matisse-800 text-transparent;
+  }
+
+  .gradient-dark {
+    /* @apply from-dm_blue-50 to-dm_blue-800; */
+    @apply from-matisse-25 to-sky-700;
+  }
+
+  .gradient-light {
+    @apply from-matisse-400 to-matisse-800;
+  }
+
+  .gradient-blue {
+    @apply bg-gradient-to-tr from-matisse-900/80 via-matisse-800/80 to-matisse-600/50;
+  }
+
+  .gradient-green-dark {
+    @apply bg-gradient-to-tr from-[#27456270] via-[#3664] to-[#4780];
+  }
+
+  .gradient-blue-dark {
+    @apply bg-gradient-to-tr from-[#27456260] via-[#3696] to-[#36d2];
+  }
+  .gradient-blue-light {
+    @apply bg-gradient-to-b from-matisse-100 to-matisse-25;
+  }
+
+  .gradient-card-dark {
+    @apply bg-gradient-to-b from-zinc-900 to-[#161f27];
+  }
+
+  .menu-mobile-overlay {
+    @apply overflow-hidden after:w-full after:fixed after:inset-0 after:bg-[hsl(208.24deg_12.59%_73.53%/50%)] after:dark:bg-[rgba(0,4,11,0.7)] after:backdrop-grayscale-[0.5] after:backdrop-blur-md  after:opacity-0 after:duration-300 after:-z-10;
+    will-change: opacity;
+  }
+
+  .overlay-index {
+    @apply after:!z-10;
+  }
+  .overlay-opacity {
+    @apply after:!opacity-100;
+  }
+
+  .stack-image {
+    @apply opacity-0 absolute inset-0 h-full object-cover duration-300;
+  }
+
+  .shadow-inset-matisse {
+    @apply bg-[linear-gradient(45deg,#335779,#3d5e7e)];
+    box-shadow: inset 0 20px 20px -11px #8299b1;
+  }
+
+  .custom-underline-after-static {
+    @apply relative after:absolute after:inset-0 after:border-current after:duration-500 after:border-b-2 sm:after:border-b-4 after:-mb-2 after:opacity-100;
+  }
+
+  /*  LINK UNDERLINE TEXT AFTER  */
+  .custom-underline-after-setup {
+    @apply relative after:absolute after:inset-0 after:border-current after:duration-100 after:border-b after:pb-1 after:opacity-0 after:bottom-[-1px];
+  }
+
+  /*  LINK UNDERLINE TEXT AFTER  */
+  .custom-underline-after-hover {
+    @apply hover:after:opacity-100 hover:active:after:border-matisse;
+  }
+
+  /*  LINK UNDERLINE TEXT AFTER  */
+  .custom-underline-after-active {
+    @apply active:after:opacity-100 active:after:border-matisse;
+  }
+
+  /* BUTTONS SHADOW OPACITY AFTER */
+  .custom-shadow-after {
+    @apply relative after:inset-0 after:absolute after:duration-100 after:opacity-0 active:after:opacity-100 after:rounded-xl;
+    color: hsla(210, 46%, 32%, 0.9);
+  }
+
+  .custom-shadow-after::after {
+    box-shadow: 0 0 0px 1px;
+  }
+  /* .custom-shadow-after::after:hover {
+    box-shadow:
+      0 0 1px 0.5px currentColor,
+      0 1px 3px -2px currentColor,
+      0 2px 5px -3px currentColor;
+  } */
+
+  /* PRIMARY GRADIENT */
+
+  .custom-primary-gr {
+    background: linear-gradient(127deg, #6a9cc6 -6.79%, #366694 94.99%);
+    box-shadow:
+      0px 1px 1px 0px rgba(38, 60, 84, 0.1),
+      -1px 2px 2px 0px rgba(38, 60, 84, 0.09),
+      -2px 5px 3px 0px rgba(38, 60, 84, 0.05),
+      -3px 9px 4px 0px rgba(38, 60, 84, 0.01),
+      -5px 14px 4px 0px rgba(38, 60, 84, 0);
+  }
+  .custom-primary-hover-gr {
+    background: linear-gradient(118deg, #4880af -3.96%, #2c5278 97.89%);
+    box-shadow:
+      0px 1px 2px 0px rgba(25, 39, 56, 0.1),
+      -1px 3px 3px 0px rgba(25, 39, 56, 0.09),
+      -2px 6px 4px 0px rgba(25, 39, 56, 0.05),
+      -4px 11px 5px 0px rgba(25, 39, 56, 0.01),
+      -6px 17px 5px 0px rgba(25, 39, 56, 0);
+  }
+  .custom-primary-active-gr {
+    background: linear-gradient(122deg, #2c5278 -5.23%, #263c54 93.59%);
+    box-shadow:
+      0px 0px 1px 0px rgba(25, 39, 56, 0.25),
+      0px 1px 1px 0px rgba(25, 39, 56, 0.21),
+      -1px 3px 2px 0px rgba(25, 39, 56, 0.13),
+      -2px 5px 2px 0px rgba(25, 39, 56, 0.04),
+      -3px 8px 3px 0px rgba(25, 39, 56, 0);
+  }
+
+  /* PRIMARY SECONDARY */
+  .custom-secondary-gr {
+    background: linear-gradient(126deg, #e8eef6 -11.21%, #9ebedb 97.45%);
+    box-shadow:
+      0px 0px 1px 0px rgba(40, 70, 100, 0.1),
+      0px 1px 1px 0px rgba(40, 70, 100, 0.09),
+      -1px 2px 2px 0px rgba(40, 70, 100, 0.05),
+      -2px 4px 2px 0px rgba(40, 70, 100, 0.01),
+      -2px 7px 2px 0px rgba(40, 70, 100, 0);
+  }
+
+  /* HEADER BORDER */
+  .custom-header-border {
+    background: radial-gradient(
+      106.11% 1.74% at 51.59% 100.8%,
+      rgb(3 18 39) 0%,
+      rgb(13 48 91) 24.92%,
+      rgb(50 78 133) 42.71%,
+      rgb(248 250 252 / 80%) 88.54%
+    );
+  }
+
+  /* HERO RADIAL GRADIENT BG */
+  .custom-hero-radial-bg {
+    background: radial-gradient(
+      238.11% 58.54% at 51.59% -9.61%,
+      hsl(221deg 98% 84% / 50%) 0,
+      rgba(50, 83, 133, 0.2) 5.92%,
+      rgb(25 91 210/3%) 42.71%,
+      rgb(3 19 39 / 0%) 88.54%
+    );
+  }
+
+  /* HERO RADIAL GRADIENT BG */
+  .custom-hero-radial-bg-dark {
+    background: radial-gradient(
+      238.11% 58.54% at 51.59% -9.61%,
+      hsl(221deg 98% 84% / 70%) 0,
+      rgba(50, 83, 133, 0.4) 22.92%,
+      rgb(25 91 210/5%) 42.71%,
+      rgb(3 19 39 / 0%) 88.54%
+    );
+  }
+
+  /* HOME HERO TITLE STROKE */
+  .title-stroke {
+    --stroke-size: 1.3px;
+    text-shadow:
+      var(--stroke-size) var(--stroke-size) 0 currentColor,
+      calc(-1 * var(--stroke-size)) calc(-1 * var(--stroke-size)) 0 currentColor,
+      var(--stroke-size) calc(-1 * var(--stroke-size)) 0 currentColor,
+      calc(-1 * var(--stroke-size)) var(--stroke-size) 0 currentColor,
+      var(--stroke-size) var(--stroke-size) 0 currentColor,
+      0 8px 5px #3768961a,
+      0 8px 15px #37689624,
+      0 0 30px #0f2f4d21;
+    /* -webkit-text-stroke-color: currentColor; */
+    /* -webkit-text-stroke-width: thick; */
+  }
+
+  /* HERO BLOBS */
+
+  .custom-blob-color {
+    @apply bg-[linear-gradient(45deg,rgb(203_151_29/53%),rgb(90_152_203/53%))];
+  }
+
+  /* BORDER COMPONENTS LAYOUT */
+  .custom-border-color {
+    @apply dark:border-slate-300/20 border-slate-300 hover:border-slate-400/70 dark:hover:border-slate-200/30;
+  }
+
+  /* FOOTER BOLD SMALL TITLES */
+  .custom-small-black-blue {
+    @apply text-gray-900 dark:text-matisse-400;
+  }
+
+  /* FOOTER BOLD MID TITLES */
+  .custom-normal-black-blue {
+    @apply text-gray-700 dark:text-matisse-500;
+  }
+
+  /* HOME CONTACT BOLD MID TITLES */
+  .custom-normal-black-white {
+    @apply text-gray-700 dark:text-white;
+  }
+
+  /*  SMALL GRAY TEXT */
+  .custom-small-gray {
+    @apply text-gray-600 hover:text-black dark:text-gray-400 hover:dark:text-matisse-25;
+  }
+
+  /*  MID GRAY TEXT */
+  .custom-normal-gray {
+    @apply text-gray-500  hover:text-black dark:text-zinc-400 hover:dark:text-matisse-25;
+  }
+
+  /*  ICON GRAY */
+  .custom-icon-gray {
+    @apply text-gray-400 hover:text-gray-700 dark:text-gray-400/70 dark:hover:text-gray-300;
+  }
+
+  /* PRODUCTS IMAGE TITLE CENTER ABSOLUTE */
+  .custom-abs-center {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    @apply absolute;
+  }
+
+  /* BLOB HERO COLORS */
+
+  .blob_light {
+    background-image: linear-gradient(
+      rgb(234 238 141 / 36%),
+      hsl(37.77deg 91.8% 47.84% / 26%)
+    );
+  }
+  .blob_dark {
+    background-image: linear-gradient(rgb(64 55 235 / 42%), #022a63);
+  }
+
+  /* BLOB PSEUDOELEMENT SETUP */
+  .blur_blob_setup {
+    @apply absolute top-[210%] lg:top-[20%] left-[55%] -translate-x-1/2 lg:left-[120%] w-2/3 lg:w-[45%] aspect-[16/9] h-auto blur-3xl sm:blur-[120px] lg:blur-3xl -z-10 rounded-full;
+  }
+
+  /* SHADOW MENU MOBILE */
+  .custom-shadow-menu {
+    box-shadow:
+      10px 4px 20px -30px hsl(210deg 9.1% 48.16%),
+      -10px 4px 20px -30px hsl(210deg 9.1% 48.16%),
+      12px 14px 30px -30px hsl(210deg 9.1% 48.16%),
+      -12px 14px 30px -30px hsl(210deg 9.1% 48.16%);
+  }
+
+  .custom-border-radius-bottom {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+
+  /* LANDING PRODUCTS LOGO GRID */
+
+  .logo {
+    @apply text-gray-500 hover:!text-gray-900;
+  }
+
+  .logoFillWhite {
+    @apply text-matisse_gray-100 fill-current;
+  }
+
+  /* SECTIONS SHADOWS */
+  .custom-section-shadow {
+    @apply shadow-[0_4px_10px] shadow-[hsl(0deg_0%_0%/5.88%)];
+  }
+
+  /* HOVER UP AND ACTIVE DOWN SCALE EFFECT ELEMENTS */
+  .custom-hover-active-scale {
+    @apply transition-transform duration-100;
+  }
+  .custom-hover-active-scale:hover {
+    scale: 1.03;
+  }
+  .custom-hover-active-scale:active {
+    scale: 1;
+  }
+
+  /* ACTIVE DOWN SCALE EFFECT ELEMENTS */
+  .custom-active-scale {
+    @apply transition-transform duration-75;
+  }
+  .custom-active-scale:active {
+    scale: 0.97;
+  }
+
+  /* ACTIVE STROKE EFFECT ELEMENTS */
+  .custom-active-stroke:active {
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+  }
+}
+
+body * {
+  /* outline: 1px solid #0503; */
+}

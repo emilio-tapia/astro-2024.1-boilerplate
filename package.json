@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "boilerplate_2024.1",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -7,11 +7,53 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "format": "prettier --write --plugin=prettier-plugin-astro .",
+    "prettier:check": "prettier --check --plugin=prettier-plugin-astro .",
+    "postcss:util": "postcss input.css -u postcss-utilities -o output.css",
+    "list:selector": "list-selectors \"style/**/*.css\""
   },
   "dependencies": {
-    "astro": "^4.10.3",
     "@astrojs/check": "^0.7.0",
-    "typescript": "^5.4.5"
+    "@astrojs/react": "^3.6.0",
+    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.10.3",
+    "astro-icon": "^1.1.0",
+    "gsap": "^3.12.5",
+    "plyr": "^3.7.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.4",
+    "three": "^0.165.0",
+    "typescript": "^5.4.5",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.66",
+    "@types/dat.gui": "^0.7.13",
+    "autoprefixer": "^10.4.19",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "cssnano": "^7.0.2",
+    "dat.gui": "^0.7.9",
+    "doiuse": "^6.0.2",
+    "list-selectors": "^2.0.1",
+    "postcss-atroot": "^0.2.4",
+    "postcss-browser-reporter": "^0.7.0",
+    "postcss-class-name-shortener": "^2.0.0",
+    "postcss-for": "^2.1.1",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.5.14",
+    "postcss-reporter": "^7.1.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "postcss-spring-easing": "^1.0.2",
+    "postcss-utilities": "^0.8.4",
+    "postcss-will-change": "^4.0.1",
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0",
+    "sass": "^1.77.6",
+    "tailwind-merge": "^2.3.0"
   }
 }

@@ -1,0 +1,63 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Icon from "astro-icon";
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+import ButtonSystem from "../buttons/ButtonSystem.astro";
+type Props = {
+  iconName: string;
+  iconColor: string;
+  textDirection?: "center" | "left" | "right";
+  rounded?: boolean;
+};
+
+const {
+  iconName,
+  iconColor,
+  textDirection = "left",
+  rounded = true,
+} = Astro.props;
+---
+
+<div
+  class:list={clsxm([
+    "relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg border border-transparent hover:border-[#C2C2C2] duration-300 dark:bg-[#282b2f]",
+
+    {
+      "rounded-2xl": rounded,
+      "text-center": textDirection === "center",
+      "text-left": textDirection === "left",
+      "text-right": textDirection === "right",
+    },
+  ])}
+>
+  <div class="p-4 flex-auto">
+    <div
+      class:list={clsxm([
+        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-xl",
+
+        {
+          "bg-red-400": iconColor === "red",
+          "bg-yellow-400": iconColor === "yellow",
+          "bg-emerald-400": iconColor === "green",
+        },
+      ])}
+    >
+      <Icon name={iconName} />
+    </div>
+    <h6 class="text-xl font-semibold dark:text-white"><slot name="title" /></h6>
+    <p class="my-2 dark:text-soft_gray-400">
+      <slot name="description" />
+    </p>
+
+    <div class="block mt-6 space-x-2 lg:hidden">
+      <ButtonSystem type="outline_white" iconName="quotation" size="sm">
+        <span>{t("cta").contact}</span>
+      </ButtonSystem>
+      <ButtonSystem type="outline_white" size="sm">
+        <span>{t("cta").need_help}</span>
+      </ButtonSystem>
+    </div>
+  </div>
+</div>

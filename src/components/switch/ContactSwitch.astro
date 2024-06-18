@@ -1,0 +1,90 @@
+---
+import BorderRounded from "../border/BorderRounded.astro";
+import Icon from "astro-icon";
+import info from "@/data/info.json";
+import { clsxm } from "@/utils/styles/tw";
+
+type Props = {
+  className?: string;
+  align: "center" | "left";
+};
+
+const { className = "", align } = Astro.props;
+
+const iconPaths = {
+  mail: "mail",
+  ws: info.social[0]!.icon,
+};
+
+const switchNames = {
+  mail: "Email",
+  ws: info.social[0]!.displayName,
+};
+
+const sender = "mail";
+---
+
+<!-- Store the message prop as a data attribute. -->
+<contact-sender-switch data-sender={sender} class="contents">
+  <BorderRounded
+    className="rounded-full p-1 w-full sm:w-72 @container/mail"
+    paddingUnit={1}
+  >
+    <div
+      class="flex text-xs font-semibold leading-5 child:flex-1 child:w-auto child:rounded-full child:px-3 child:duration-300 child:focus:outline-none child:flex child:justify-center child:items-center child:gap-2 child:py-2"
+    >
+      <button
+        data-sender-switch="mail"
+        class:list={[
+          {
+            " bg-transparent border-[1px] border-matisse text-matisse dark:bg-matisse dark:text-matisse-50":
+              sender === "mail",
+            " bg-transparent text-slate-400/60 hover:scale-105 hover:text-matisse":
+              sender === "ws",
+          },
+        ]}
+      >
+        <span class="tracking-widest uppercase hidden @2xs/mail:inline"
+          >{switchNames.mail}</span
+        >
+        <Icon name={iconPaths.mail} class="fill-current w-4" />
+      </button>
+      <button
+        data-sender-switch="ws"
+        class:list={[
+          {
+            " bg-transparent border-[1px] border-ws-100 text-ws-100 dark:bg-ws dark:text-matisse-25":
+              sender === "ws",
+            " bg-transparent text-slate-400/60 hover:scale-105 hover:text-ws-100 dark:hover:text-ws":
+              sender === "mail",
+          },
+        ]}
+      >
+        <span class="tracking-widest uppercase hidden @2xs/mail:inline"
+          >{switchNames.ws}</span
+        >
+        <Icon name={iconPaths.ws} class="fill-current w-4" />
+      </button>
+    </div>
+  </BorderRounded>
+</contact-sender-switch>
+
+<script>
+  class ContactSenderSwitch extends HTMLElement {
+    constructor() {
+      super();
+      // const senderParent = element.dataset.sender;
+      // const buttons = this.querySelectorAll("button");
+      // buttons.forEach((btn) => {
+      //   btn.addEventListener("click", (e) => {
+      //     const element = e.currentTarget as HTMLElement;
+      //     const senderBtn = element.dataset.senderSwitch;
+      //     if (sender === "mail") console.log(element);
+      //     if (sender === "ws") console.log(element);
+      //   });
+      // });
+    }
+  }
+
+  customElements.define("contact-sender-switch", ContactSenderSwitch);
+</script>

@@ -1,0 +1,46 @@
+---
+// import { getNetworkSpeed } from "@/utils/server/speed";
+// let result = await getNetworkSpeed();
+// console.log(result);
+import "plyr/dist/plyr.css";
+import Loader from "@/components/loader/Loader.astro";
+type Props = {
+  path: string;
+  id?: string;
+  poster: string;
+};
+const { path, id = `${path}_hero`, poster } = Astro.props;
+---
+
+<div id=`loader_${id}` class="absolute w-full h-full grid place-content-center">
+  <Loader size="lg" />
+</div>
+<plyr-video
+  id={id}
+  class="opacity-0 w-full"
+  data-path={path}
+  data-poster={poster}
+>
+  <video> </video>
+</plyr-video>
+
+<style is:global>
+  .plyr {
+    height: 100%;
+  }
+
+  .plyr__poster {
+    background-size: cover;
+  }
+
+  plyr-video video {
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  import { PlyrManager } from "@/lib/plyr/PlyrManager";
+  customElements.define("plyr-video", PlyrManager);
+</script>
+
+<!-- TODO CREATE LOADER FOR VIDEO -->

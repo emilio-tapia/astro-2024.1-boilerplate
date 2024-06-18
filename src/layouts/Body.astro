@@ -1,0 +1,64 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import MenuMobileOverlay from "@/components/header/MenuMobileOverlay.astro";
+import NetworkCheckOnLoad from "@/utils/network/NetworkCheckOnLoad.astro";
+import DarkModeSetup from "@/utils/theme/DarkModeOnLoad.astro";
+---
+
+<body>
+  <DarkModeSetup />
+  <NetworkCheckOnLoad />
+
+  <div
+    id="app"
+    class="bg-matisse_gray-100 dark:bg-zinc-900 menu-mobile-overlay"
+  >
+    <Header />
+    <div class="[grid-area:main]">
+      <slot />
+    </div>
+    <Footer />
+
+    <MenuMobileOverlay />
+  </div>
+
+  <script src="@/vendor/tailwind/tailwindBreakpoint.js"></script>
+  <script src="@/lib/gsap/gsap_setup.ts"></script>
+  <script src="@/vendor/safari/safari-focus-polyfill.js"></script>
+</body>
+
+<script>
+  // GET BOUNDING CLIENT
+  // X & Y: ORIGIN POINT CORNER LEFT / TOP
+  // HEIGHT: HEIGHT ELEMENT
+  // WIDTH: WIDTH ELEMENT
+  // TOP: SPACE FROM TOP (Y)
+  // BOTTOM: SPACE FROM TOP (Y) + HEIGHT ELEMENT
+  // LEFT: SPACE FROM LEFT (X)
+  // RIGHT: SPACE FROM LEFT (X) + WIDTH ELEMENT
+</script>
+
+<script>
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   console.log("DOMContentLoaded");
+  // });
+  // document.addEventListener("load", () => {
+  //   console.log("load");
+  // });
+  // document.addEventListener("astro:before-preparation", () => {
+  //   console.log("astro:before-preparation");
+  // });
+  // document.addEventListener("astro:after-preparation", () => {
+  //   console.log("astro:after-preparation");
+  // });
+  // document.addEventListener("astro:before-swap", () => {
+  //   console.log("astro:before-swap");
+  // });
+  // document.addEventListener("astro:after-swap", () => {
+  //   console.log("astro:after-swap");
+  // });
+  // document.addEventListener("astro:page-load", () => {
+  //   console.log("astro:page-load");
+  // });
+</script>

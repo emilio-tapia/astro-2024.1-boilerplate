@@ -1,0 +1,32 @@
+---
+import Icon from 'astro-icon';
+const { message = 'Welcome, world!' } = Astro.props;
+
+const iconPaths = {
+  settings: 'settings',
+};
+---
+
+<!-- Store the message prop as a data attribute. -->
+<settings-menu data-message={message} class="flex w-6">
+  <button class="w-full">
+    <Icon name={iconPaths.settings} class="fill-current text-matisse" />
+  </button>
+</settings-menu>
+
+<script>
+  class SettingsMenu extends HTMLElement {
+    constructor() {
+      super();
+
+      // Read the message from the data attribute.
+      const message = this.dataset.message;
+      const button = this.querySelector('button') as HTMLButtonElement;
+      button.addEventListener('click', () => {
+        alert(message);
+      });
+    }
+  }
+
+  customElements.define('settings-menu', SettingsMenu);
+</script>
